@@ -1,7 +1,11 @@
+package utils;
+
 import java.util.Objects;
 import java.util.ArrayList;
 
 public class InputParser {
+    private static final ArrayList<String> history = new ArrayList<>();
+
     public static boolean showHelp(String[] parts) {
         if (Objects.equals(parts[0], "help")) {
             System.out.println("Доступные команды:");
@@ -23,7 +27,7 @@ public class InputParser {
         return false;
     }
 
-    public static boolean showHistory(String[] parts, ArrayList<String> history) {
+    public static boolean showHistory(String[] parts) {
         if (Objects.equals(parts[0], "history")) {
             if (history.isEmpty()) {
                 System.out.println("История пуста");
@@ -35,7 +39,7 @@ public class InputParser {
         } return false;
     }
 
-    public static boolean showLast(String[] parts, ArrayList<String> history) {
+    public static boolean showLast(String[] parts) {
         if (Objects.equals(parts[0], "last")) {
             if (history.isEmpty()) {
                 System.out.println("История пуста");
@@ -47,7 +51,7 @@ public class InputParser {
         } return false;
     }
 
-    public static boolean clearHistory(String[] parts, ArrayList<String> history) {
+    public static boolean clearHistory(String[] parts) {
         if (Objects.equals(parts[0], "clear")) {
             if (history.isEmpty()) {
                 System.out.println("История пуста");
@@ -71,7 +75,7 @@ public class InputParser {
         }
     }
 
-    public static void addResultToHistory(ArrayList<String> history,String[] parts, Double result, String operator, int maxSize) {
+    public static void addResultToHistory(String[] parts, Double result, String operator, int maxSize) {
         String record = parts[0] + " " + operator + " " + parts[2] + " = " + result;
 
         if (history.size() >= maxSize) {

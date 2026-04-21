@@ -1,3 +1,5 @@
+package calculator;
+
 import java.util.HashMap;
 
 public class CalculateWord {
@@ -72,21 +74,22 @@ public class CalculateWord {
             n = Math.abs(n);
         }
 
+        if (n >= 100) {
+            int hundreds = (n / 100) * 100;
+            res += numberToWord.get(hundreds) + " ";
+            n %= 100;
+        }
+
         if (n > 0) {
             if (numberToWord.containsKey(n)) {
                 res += numberToWord.get(n);
             } else {
-                int t = (n / 10) * 10;
-                int o = n % 10;
-                res += numberToWord.get(t) + " " + numberToWord.get(o);
+                int tens = (n / 10) * 10;
+                int ones = n % 10;
+                res += numberToWord.get(tens) + " " + numberToWord.get(ones);
             }
         }
 
-        if (n >= 100) {
-            int h = (n / 100) * 100;
-            res += numberToWord.get(h) + " ";
-            n %= 10;
-        }
         return res.trim();
     }
 

@@ -1,10 +1,14 @@
+package app;
+
+import calculator.CalculateWord;
+import calculator.Calculator;
+import utils.InputParser;
+
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args){
         try(Scanner input = new Scanner(System.in)) {
-            ArrayList<String> history = new ArrayList<>();
             while (true) {
 //              Ввод данных пользователем
                 System.out.print("Введите выражение (число - оператор - число): ");
@@ -16,9 +20,9 @@ public class Main {
 //              Команды
                 if (InputParser.exitProgram(parts)) break;
                 if (InputParser.showHelp(parts)) continue;
-                if (InputParser.showHistory(parts, history)) continue;
-                if (InputParser.showLast(parts, history)) continue;
-                if (InputParser.clearHistory(parts, history)) continue;
+                if (InputParser.showHistory(parts)) continue;
+                if (InputParser.showLast(parts)) continue;
+                if (InputParser.clearHistory(parts)) continue;
 
                 String[] convertedParts = CalculateWord.convertToSymbols(parts);
                 boolean isWordMode = false;
@@ -41,7 +45,7 @@ public class Main {
                 String operator = parts[1];
 
 //              Проеврка на ноль, правильность ввода оператора и выполнение мат действий
-                Double result = Calculator.Calculate(num1, num2, operator);
+                Double result = Calculator.calculate(num1, num2, operator);
                 if (result != null) {
                     if (isWordMode) {
                         // Если вводили словами — выводим словами
@@ -53,7 +57,7 @@ public class Main {
                     }
 
                     // Сохранение в историю
-                    InputParser.addResultToHistory(history, parts, result, operator, 10);
+                    InputParser.addResultToHistory(parts, result, operator, 10);
                 }
             }
         }

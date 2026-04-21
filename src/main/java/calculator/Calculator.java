@@ -1,5 +1,7 @@
+package calculator;
+
 public class Calculator {
-    public static Double Calculate (double num1, double num2, String operator) {
+    public static Double calculate (double num1, double num2, String operator) {
         double result = 0;
         switch (operator) {
             case "+":

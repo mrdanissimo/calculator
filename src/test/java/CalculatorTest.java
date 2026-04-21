@@ -1,4 +1,6 @@
+import calculator.Calculator;
 import org.junit.jupiter.api.Test;
+import utils.InputParser;
 
 import java.util.ArrayList;
 
@@ -8,18 +10,18 @@ public class CalculatorTest {
 
     @Test
     void testAddition() {
-        assertEquals(8.0, Calculator.Calculate(5, 3, "+"), 0.001);
+        assertEquals(8.0, Calculator.calculate(5, 3, "+"), 0.001);
     }
 
 
     @Test
     void testDivision() {
-        assertEquals(2.5, Calculator.Calculate(5, 2, "/"), 0.001);
+        assertEquals(2.5, Calculator.calculate(5, 2, "/"), 0.001);
     }
 
     @Test
     void testDivisionByZero() {
-        assertNull(Calculator.Calculate(5, 0, "/"), "Деление на ноль должно возвращать null");
+        assertNull(Calculator.calculate(5, 0, "/"), "Деление на ноль должно возвращать null");
     }
 
     @Test
@@ -29,7 +31,7 @@ public class CalculatorTest {
         for (int i = 0; i < 11; i++) {
             String[] parts = {String.valueOf(i), "+", "1"};
             Double result = (double)(i + 1);
-            InputParser.addResultToHistory(history, parts, result, "+", maxSize);
+            InputParser.addResultToHistory(parts, result, "+", maxSize);
         }
 
         assertEquals(10, history.size());
@@ -48,7 +50,7 @@ public class CalculatorTest {
 
         String[] parts = {"clear"};
 
-        InputParser.clearHistory(parts, history);
+        InputParser.clearHistory(parts);
 
         assertTrue(history.isEmpty());
         assertEquals(0, history.size());
