@@ -83,4 +83,8 @@ public class InputParser {
         }
         history.add(record);
     }
+
+    public static ArrayList<String> getHistory() {
+        return history;
+    }
 }

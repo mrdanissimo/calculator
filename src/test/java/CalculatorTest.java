@@ -26,7 +26,6 @@ public class CalculatorTest {
 
     @Test
     void testHistoryStoresLastTen() {
-        ArrayList<String> history = new ArrayList<>();
         int maxSize = 10;
         for (int i = 0; i < 11; i++) {
             String[] parts = {String.valueOf(i), "+", "1"};
@@ -34,26 +33,28 @@ public class CalculatorTest {
             InputParser.addResultToHistory(parts, result, "+", maxSize);
         }
 
-        assertEquals(10, history.size());
+        ArrayList<String> actualHistory = InputParser.getHistory();
 
-        assertTrue(history.get(0).contains("1 + 1"));
+        assertEquals(10, actualHistory.size());
 
-        assertTrue(history.get(history.size() - 1).contains("10 + 1"));
+        assertTrue(actualHistory.get(0).contains("1 + 1"));
+
+        assertTrue(actualHistory.get(actualHistory.size() - 1).contains("10 + 1"));
 
     }
 
     @Test
     void testClearHistory() {
-        ArrayList<String> history = new ArrayList<>();
-        history.add("1 + 1 = 2.0");
-        history.add("5 * 2 = 10.0");
+        ArrayList<String> actualHistory = InputParser.getHistory();
+        actualHistory.add("1 + 1 = 2.0");
+        actualHistory.add("5 * 2 = 10.0");
 
         String[] parts = {"clear"};
 
         InputParser.clearHistory(parts);
 
-        assertTrue(history.isEmpty());
-        assertEquals(0, history.size());
+        assertTrue(actualHistory.isEmpty());
+        assertEquals(0, actualHistory.size());
     }
 }
 
