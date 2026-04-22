@@ -53,6 +53,7 @@ public class CalculatorTest {
 
         InputParser.clearHistory(parts);
 
+
         assertTrue(actualHistory.isEmpty());
         assertEquals(0, actualHistory.size());
     }

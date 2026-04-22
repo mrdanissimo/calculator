@@ -3,9 +3,9 @@ package calculator;
 import java.util.HashMap;
 
 public class CalculateWord {
-    public static HashMap<String, Integer> wordToNumber = new HashMap<>();
-    public static HashMap<String, String> wordToOperator = new HashMap<>();
-    public static HashMap<Integer, String> numberToWord = new HashMap<>();
+    private static HashMap<String, Integer> wordToNumber = new HashMap<>();
+    private static HashMap<String, String> wordToOperator = new HashMap<>();
+    private static HashMap<Integer, String> numberToWord = new HashMap<>();
 
     static {
         addNumber("ноль", 0);
